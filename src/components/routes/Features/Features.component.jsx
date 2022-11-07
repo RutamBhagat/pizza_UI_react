@@ -1,3 +1,5 @@
+import img1 from "./Screenshot (40).png";
+
 const Features = () => {
   return (
     <section id="features">
@@ -8,7 +10,7 @@ const Features = () => {
         {
           // What's Different
         }
-        <div className="flex flex-col space-y-12 md:w-1/2">
+        <div className="flex flex-col items-center space-y-12 md:w-1/2">
           <h2 className="max-w-md text-4xl font-bold text-center md:text-left">
             What's Different about FastKitchen?
           </h2>
@@ -19,6 +21,7 @@ const Features = () => {
             last slice of pizza slice. No matter what the situation, pizza
             always helps.
           </p>
+          <img className="w-3/4" src={img1} alt="img1" />
         </div>
         {
           // Numbered List
@@ -34,13 +37,13 @@ const Features = () => {
                   01
                 </div>
                 <h3 className="text-base font-bold md:mb-4 md:hidden">
-                  What We Need - More Choice. More Fun.
+                  What Do We Need? - More Choice. More Fun.
                 </h3>
               </div>
             </div>
             <div>
               <h3 className="hidden mb-4 text-lg font-bold md:block">
-                What We Need - More Choice. More Fun.
+                What Do We Need? - More Choice. More Fun.
               </h3>
               <p className="text-darkGrayishBlue">
                 A pizza that gives you the freedom to choose your toppings -

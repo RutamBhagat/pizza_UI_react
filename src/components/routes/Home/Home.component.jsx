@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BGImg from "./bg1.jpg"
+import img1 from "../Features/Screenshot from 2022-11-07 16-54-55.png"
 
 const Home = () => {
   return (
@@ -41,7 +41,7 @@ const Home = () => {
           // Image
         }
         <div className="md:w-1/2 ">
-          <img src={BGImg} alt="" />
+          <img src={img1} alt="img1" />
         </div>
       </div>
     </section>

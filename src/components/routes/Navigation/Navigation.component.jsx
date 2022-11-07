@@ -20,7 +20,7 @@ const Navigation = ({ checkoutArr }) => {
       <nav className="z-10 mx-auto p-6 fixed top-0 left-0 right-0 bg-white bg-opacity-60">
         <div className="flex items-center justify-between">
           <div className="py-2">
-            <Link to="/" className="text-darkBlue text-3xl font-semibold">
+            <Link to="/home" className="text-darkBlue text-3xl font-semibold">
               FastKitchen
             </Link>
           </div>

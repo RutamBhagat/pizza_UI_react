@@ -23,8 +23,8 @@ const App = () => {
   };
 
   const handleAddPizza = (pizza, quantity, size, subTotal) => {
-    const newPizza = {}
-    Object.assign(newPizza, pizza)
+    const newPizza = {};
+    Object.assign(newPizza, pizza);
     Object.assign(newPizza, { quantity, size, subTotal });
     checkoutArr.push(newPizza);
     setCheckoutArr([...checkoutArr]);
@@ -46,9 +46,8 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Navigation checkoutArr={checkoutArr} />}>
-          <Route index element={<Home />} />
           <Route
-            path="pizza"
+            index
             element={
               <Pizza
                 wishList={wishList}
@@ -58,6 +57,7 @@ const App = () => {
               />
             }
           />
+          <Route path="home" element={<Home />} />
           <Route path="features" element={<Features />} />
           <Route path="reviews" element={<Customers />} />
           <Route path="contacts" element={<Contacts />} />

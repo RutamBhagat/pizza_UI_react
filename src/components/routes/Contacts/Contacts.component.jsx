@@ -7,7 +7,7 @@ import InstagramImg from "../../../img/icon-instagram.svg";
 
 const Contacts = () => {
   return (
-    <div className="bg-veryDarkBlue mt-24">
+    <div className="bg-veryDarkBlue mt-24 ">
       {
         // Flex Container
       }

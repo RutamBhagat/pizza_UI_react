@@ -3,14 +3,21 @@ import Category from "../Category/Category.component";
 import shortid from "shortid";
 import { useState, useEffect } from "react";
 import ItemsInCart from "../ItemsInCart/ItemsInCart.component";
+import { Link } from "react-router-dom";
 
-const Card = ({ pizza, wishList, handleSetWishList, handleAddPizza, checkoutArr }) => {
+const Card = ({
+  pizza,
+  wishList,
+  handleSetWishList,
+  handleAddPizza,
+  checkoutArr,
+}) => {
   const { name, description, image, prices, category, stars, reviews } = pizza;
 
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("small");
   const [subTotal, setSubTotal] = useState(quantity * prices[size]);
-  const [buttonActive, setButtonActive] = useState(wishList.includes(name));
+  const [buttonActive, setButtonActive] = useState(wishList.includes(pizza));
 
   useEffect(() => {
     setSubTotal(quantity * prices[size]);
@@ -18,9 +25,9 @@ const Card = ({ pizza, wishList, handleSetWishList, handleAddPizza, checkoutArr 
 
   const handleClick = () => {
     if (buttonActive) {
-      handleSetWishList(name, "remove");
+      handleSetWishList(pizza, "remove");
     } else {
-      handleSetWishList(name, "add");
+      handleSetWishList(pizza, "add");
     }
     setButtonActive(!buttonActive);
     // !buttonActive means opposite of button activity state i.e. if true then make it false
@@ -144,29 +151,31 @@ const Card = ({ pizza, wishList, handleSetWishList, handleAddPizza, checkoutArr 
               </span>
               <button
                 onClick={() => {
-                  handleAddPizza(pizza, quantity, size, subTotal)
+                  handleAddPizza(pizza, quantity, size, subTotal);
                 }}
                 className="flex ml-auto text-white bg-brightRed border-0 py-2 px-6 focus:outline-none hover:bg-brightRed rounded"
               >
                 Add Pizza
               </button>
-              <button
-                className="py-2 px-2 mx-2 relative border-2 border-transparent text-gray-800 bg-white rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
-                aria-label="Cart"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <Link to="/checkout">
+                <button
+                  className="py-2 px-2 mx-2 relative border-2 border-transparent text-gray-800 bg-white rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                  aria-label="Cart"
                 >
-                  <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-                <ItemsInCart checkoutArr={checkoutArr} />
-              </button>
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                  <ItemsInCart checkoutArr={checkoutArr} />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

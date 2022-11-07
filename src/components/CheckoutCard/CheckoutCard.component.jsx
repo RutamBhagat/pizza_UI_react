@@ -7,7 +7,7 @@ const CheckoutCard = ({
   wishList,
   handleSetWishList,
   handleRemovePizza,
-  changeTotal,
+  handleUpdatePizza,
 }) => {
   const { name, image, prices, category } = pizza;
   const ID = shortid.generate();
@@ -20,10 +20,6 @@ const CheckoutCard = ({
   useEffect(() => {
     setSubTotal(quantity * prices[size]);
   }, [quantity, size, prices]);
-
-  useEffect(() => {
-    changeTotal(name + size + quantity, subTotal);
-  }, []);
 
   const handleClick = () => {
     if (buttonActive) {
@@ -65,12 +61,13 @@ const CheckoutCard = ({
                 <div className="relative">
                   <select
                     onChange={(event) => {
-                      changeTotal(name + size + quantity, 0);
-                      setQuantity(event.target.value);
-                      const newSubTotal = event.target.value * prices[size];
-                      changeTotal(
-                        name + size + event.target.value,
-                        newSubTotal
+                      const tempQuantity = event.target.value;
+                      setQuantity(tempQuantity);
+                      handleUpdatePizza(
+                        pizza,
+                        tempQuantity,
+                        size,
+                        tempQuantity * prices[size]
                       );
                     }}
                     value={quantity}
@@ -96,46 +93,43 @@ const CheckoutCard = ({
                     </svg>
                   </span>
                 </div>
-                <span className="ml-6 mr-3">Size</span>
-                <span className="mx-0">-</span>
-                <div className="relative mx-3">
-                      {size}
+              </div>
+              <div className="flex ml-2 my-1 items-center">
+                <span className="mr-3">Size</span>
+                <div className="relative">
+                  <select
+                    onChange={(event) => {
+                      const tempSize = event.target.value;
+                      setSize(tempSize);
+                      handleUpdatePizza(
+                        pizza,
+                        quantity,
+                        tempSize,
+                        quantity * prices[tempSize]
+                      );
+                    }}
+                    value={size}
+                    className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 text-base pl-3 pr-10"
+                  >
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                  <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                  </span>
                 </div>
               </div>
-              {
-                //   <div className="flex ml-2 my-1 items-center">
-                //   <span className="mr-3">Size</span>
-                //   <div className="relative">
-                //     <select
-                //       onChange={(event) => {
-                //         changeTotal(name + size + quantity, 0);
-                //         setSize(event.target.value);
-                //         const newSubTotal = quantity * prices[event.target.value]
-                //         changeTotal(name + event.target.value + quantity, newSubTotal);
-                //       }}
-                //       value={size}
-                //       className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 text-base pl-3 pr-10"
-                //     >
-                //       <option value="small">Small</option>
-                //       <option value="medium">Medium</option>
-                //       <option value="large">Large</option>
-                //     </select>
-                //     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
-                //       <svg
-                //         fill="none"
-                //         stroke="currentColor"
-                //         stroke-linecap="round"
-                //         stroke-linejoin="round"
-                //         stroke-width="2"
-                //         className="w-4 h-4"
-                //         viewBox="0 0 24 24"
-                //       >
-                //         <path d="M6 9l6 6 6-6"></path>
-                //       </svg>
-                //     </span>
-                //   </div>
-                // </div>
-              }
             </div>
             <div className="flex">
               <span className="pr-3 title-font font-medium text-2xl text-gray-900">
@@ -143,7 +137,6 @@ const CheckoutCard = ({
               </span>
               <button
                 onClick={() => {
-                  changeTotal(name + size + quantity, 0);
                   handleRemovePizza(pizza);
                 }}
                 className="flex ml-auto text-white bg-gray-500 border-0 py-2 px-3 focus:outline-none hover:bg-brightRed rounded"

@@ -12,25 +12,33 @@ const App = () => {
   const [wishList, setWishList] = useState([]);
   const [checkoutArr, setCheckoutArr] = useState([]);
 
-  const handleSetWishList = (pizzaName, command) => {
+  const handleSetWishList = (pizza, command) => {
     if (command === "add") {
-      setWishList([...wishList, pizzaName]);
+      setWishList([...wishList, pizza]);
     } else {
-      const index = wishList.indexOf(pizzaName);
+      const index = wishList.indexOf(pizza);
       wishList.splice(index, 1);
       setWishList([...wishList]);
     }
   };
 
   const handleAddPizza = (pizza, quantity, size, subTotal) => {
-    Object.assign(pizza, { quantity, size, subTotal });
-    checkoutArr.push(pizza);
+    const newPizza = {}
+    Object.assign(newPizza, pizza)
+    Object.assign(newPizza, { quantity, size, subTotal });
+    checkoutArr.push(newPizza);
     setCheckoutArr([...checkoutArr]);
   };
 
   const handleRemovePizza = (pizza) => {
     const index = checkoutArr.indexOf(pizza);
     checkoutArr.splice(index, 1);
+    setCheckoutArr([...checkoutArr]);
+  };
+
+  const handleUpdatePizza = (pizza, quantity, size, subTotal) => {
+    const index = checkoutArr.indexOf(pizza);
+    Object.assign(checkoutArr[index], { quantity, size, subTotal });
     setCheckoutArr([...checkoutArr]);
   };
 
@@ -59,8 +67,10 @@ const App = () => {
               <Checkout
                 checkoutArr={checkoutArr}
                 handleRemovePizza={handleRemovePizza}
+                handleUpdatePizza={handleUpdatePizza}
                 wishList={wishList}
                 handleSetWishList={handleSetWishList}
+                handleAddPizza={handleAddPizza}
               />
             }
           />

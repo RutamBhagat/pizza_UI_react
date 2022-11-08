@@ -46,8 +46,9 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Navigation checkoutArr={checkoutArr} />}>
+          <Route index element={<Home />} />
           <Route
-            index
+            path="pizza"
             element={
               <Pizza
                 wishList={wishList}
@@ -57,7 +58,6 @@ const App = () => {
               />
             }
           />
-          <Route path="home" element={<Home />} />
           <Route path="features" element={<Features />} />
           <Route path="reviews" element={<Customers />} />
           <Route path="contacts" element={<Contacts />} />

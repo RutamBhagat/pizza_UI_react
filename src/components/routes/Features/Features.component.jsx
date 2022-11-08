@@ -1,5 +1,3 @@
-import img1 from "./Screenshot (40).png";
-
 const Features = () => {
   return (
     <section id="features">
@@ -14,14 +12,23 @@ const Features = () => {
           <h2 className="max-w-md text-4xl font-bold text-center md:text-left">
             What's Different about FastKitchen?
           </h2>
-          <p className="max-w-sm text-center text-darkGrayishBlue md:text-left">
+          <img
+            className="rounded-xl md:mr-10 md:ml-5"
+            src="https://source.unsplash.com/Q9VEWorDhaY"
+            alt="img1"
+          />
+          <p className="max-w-sm text-center text-darkGrayishBlue md:text-left md:mr-10 md:ml-5">
             There is something for everyone here. The vegetarians,
             non-vegetarians, the sides’ lovers and also the ones who love to
             have something sweet by the time they reach the last bite of the
             last slice of pizza slice. No matter what the situation, pizza
             always helps.
           </p>
-          <img className="w-3/4" src={img1} alt="img1" />
+          <img
+            className="rounded-xl md:mr-10 md:ml-5"
+            src="https://source.unsplash.com/MQUqbmszGGM"
+            alt="img1"
+          />
         </div>
         {
           // Numbered List

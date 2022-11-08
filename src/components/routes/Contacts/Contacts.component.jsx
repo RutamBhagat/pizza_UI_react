@@ -52,13 +52,13 @@ const Contacts = () => {
         <div className="flex justify-around space-x-20">
           <div className="flex flex-col space-y-3 text-white">
             <Link to="/" className="hover:text-brightRed">
+              About Us
+            </Link>
+            <Link to="/pizza" className="hover:text-brightRed">
               Pizza
             </Link>
             <Link to="/reviews" className="hover:text-brightRed">
               Reviews
-            </Link>
-            <Link to="/home" className="hover:text-brightRed">
-              About Us
             </Link>
             <Link to="/features" className="hover:text-brightRed">
               Features

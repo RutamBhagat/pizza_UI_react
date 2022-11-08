@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import img1 from "../Features/Screenshot from 2022-11-07 16-54-55.png"
 
 const Home = () => {
   return (
@@ -30,18 +29,18 @@ const Home = () => {
           </p>
           <div className="flex justify-center md:justify-start">
             <Link
-              to="/"
+              to="/pizza"
               className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
             >
-              Pizza
+              Buy Pizza
             </Link>
           </div>
         </div>
         {
           // Image
         }
-        <div className="md:w-1/2 ">
-          <img src={img1} alt="img1" />
+        <div className="md:w-1/2 md:ml-10 pb-12">
+          <img className="rounded-xl" src="https://source.unsplash.com/sejqj6Eaqe8" alt="img1" />
         </div>
       </div>
     </section>

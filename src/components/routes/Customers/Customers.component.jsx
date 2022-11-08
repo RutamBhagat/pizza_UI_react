@@ -40,11 +40,7 @@ const Customers = () => {
             style={{ height: "75vh" }}
           >
             <div className="carousel-caption block absolute text-center">
-              <img
-                src={Customer1}
-                className="w-36 -mt-5 mx-auto mb-10"
-                alt=""
-              />
+              <img className="w-36 -mt-5 mx-auto mb-10 rounded-full" src="https://source.unsplash.com/dcZsxUAAJXs/500x500" alt="img1" />
               <h5 className="text-3xl font-bold mb-5">Marinos Theodosiou</h5>
               <p className="text-sm">
                 “What an amazing restaurant full of history and incredible
@@ -62,11 +58,7 @@ const Customers = () => {
             style={{ height: "75vh" }}
           >
             <div className="carousel-caption block absolute text-center">
-              <img
-                src={Customer2}
-                className="w-36 -mt-5 mx-auto mb-10"
-                alt=""
-              />
+            <img className="w-36 -mt-5 mx-auto mb-10 rounded-full" src="https://source.unsplash.com/VF75PMEdvX8/500x500" alt="img1" />
               <h5 className="text-3xl font-bold mb-5">Eli Ben Gigi</h5>
               <p className="text-sm">
                 “A traditional family pizzeria Probably the pizzeria that serves
@@ -83,11 +75,7 @@ const Customers = () => {
             style={{ height: "75vh" }}
           >
             <div className="carousel-caption block absolute text-center">
-              <img
-                src={Customer3}
-                className="w-36 -mt-5 mx-auto mb-10"
-                alt=""
-              />
+            <img className="w-36 -mt-5 mx-auto mb-10 rounded-full" src="https://source.unsplash.com/gDoNB_BCkdE/500x500" alt="img1" />
               <h5 className="text-3xl font-bold mb-5">Marc B.</h5>
               <p className="text-sm">
                 “We arrived about 10 min. after opening, 16 tables had been
@@ -131,10 +119,10 @@ const Customers = () => {
       }
       <div className="mt-16 text-center">
         <Link
-          to="/"
+          to="/pizza"
           className="p-3 px-6 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
         >
-          Pizza
+          Buy Pizza
         </Link>
       </div>
     </Fragment>

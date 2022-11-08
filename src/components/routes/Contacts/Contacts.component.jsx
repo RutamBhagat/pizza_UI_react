@@ -29,14 +29,14 @@ const Contacts = () => {
             // Social Links
           }
           <div className="flex justify-center space-x-4">
+            <a href="https://twitter.com/rutamstwt">
+              <img src={TwitterImg} className="h-8" alt="" />
+            </a>
             <Link to="/">
               <img src={FacebookImg} className="h-8" alt="" />
             </Link>
             <Link to="/">
               <img src={YoutubeImg} className="h-8" alt="" />
-            </Link>
-            <Link to="/">
-              <img src={TwitterImg} className="h-8" alt="" />
             </Link>
             <Link to="/">
               <img src={PinterestImg} className="h-8" alt="" />

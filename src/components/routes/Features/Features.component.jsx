@@ -62,7 +62,7 @@ const Features = () => {
                 endless, anything and everything you can think of that too on
                 top of the crust of your choice - New hand-tossed crust, wheat
                 thin crust, cheese burst crust, classic hand-tossed crust or a
-                fresh pan pizza. Because just like a pizza, HellsKitchen
+                fresh pan pizza. Because just like a pizza, FastKitchen
                 understands you.
               </p>
             </div>
@@ -88,10 +88,10 @@ const Features = () => {
               </h3>
               <p className="text-darkGrayishBlue">
                 The icing on the cake or more aptly the extra cheese on your
-                already fabulous pizza is that HellsKitchen takes only 15 min
+                already fabulous pizza is that FastKitchen takes only 15 min
                 for its pizza delivery service. Don’t believe us? Time it if you
                 please. With 1250+ stores present all over India, you can have a
-                HellsKitchen's pizza even while traveling on a train. Yes, you
+                FastKitchen's pizza even while traveling on a train. Yes, you
                 are reading it right, you can enjoy pizza on train too. So stop
                 googling for the “pizza shops near me” and order from your
                 nearest pizza outlet to have a hot box of pizza on your table in
@@ -119,8 +119,8 @@ const Features = () => {
                 Free Large Pizza® Now.* Free Medium Pizza Later.
               </h3>
               <p className="text-darkGrayishBlue">
-                Get a free Large Pizza when you download the HellsKitchen's app
-                and join HellsKitchen's Rewards. After your first purchase
+                Get a free Large Pizza when you download the FastKitchen's app
+                and join FastKitchen's Rewards. After your first purchase
                 you’ll earn 1500 bonus points to redeem for free Medium Pizza.
               </p>
               <p className="text-darkGrayishBlue text-sm">

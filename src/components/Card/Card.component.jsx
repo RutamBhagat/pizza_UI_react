@@ -1,6 +1,5 @@
 import Stars from "../Stars/Stars.component";
 import Category from "../Category/Category.component";
-import shortid from "shortid";
 import { useState, useEffect } from "react";
 import ItemsInCart from "../ItemsInCart/ItemsInCart.component";
 import { Link } from "react-router-dom";
@@ -34,10 +33,7 @@ const Card = ({
   };
 
   return (
-    <div
-      key={shortid.generate()}
-      className="text-gray-600 body-font overflow-hidden bg-orange-200"
-    >
+    <div className="text-gray-600 body-font overflow-hidden bg-orange-200">
       <div className="container px-5 py-12 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
           <img
@@ -94,9 +90,9 @@ const Card = ({
                     value={quantity}
                     className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 text-base pl-3 pr-10"
                   >
-                    {
-                      [...Array(10).keys()].map(inst => <option value={inst + 1}>{inst + 1}</option>)
-                    }
+                    {[...Array(10).keys()].map((inst) => (
+                      <option value={inst + 1}>{inst + 1}</option>
+                    ))}
                   </select>
                   <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                     <svg

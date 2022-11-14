@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Category from "../Category/Category.component";
-import shortid from "shortid";
 
 const CheckoutCard = ({
   pizza,
@@ -10,7 +9,6 @@ const CheckoutCard = ({
   handleUpdatePizza,
 }) => {
   const { name, image, prices, category } = pizza;
-  const ID = shortid.generate();
 
   const [quantity, setQuantity] = useState(pizza.quantity);
   const [size, setSize] = useState(pizza.size);
@@ -32,10 +30,7 @@ const CheckoutCard = ({
   };
 
   return (
-    <div
-      key={ID}
-      className="text-gray-600 body-font overflow-hidden bg-orange-200"
-    >
+    <div className="text-gray-600 body-font overflow-hidden bg-orange-200">
       <div className="container px-5 py-12 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
           <img

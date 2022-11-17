@@ -19,6 +19,18 @@ const Navigation = ({ checkoutArr }) => {
       }
       <nav className="z-10 mx-auto p-6 fixed top-0 left-0 right-0 bg-white bg-opacity-60">
         <div className="flex items-center justify-between">
+          {
+            // Hamburger Icon
+          }
+          <button
+            id="menu-btn"
+            className="block hamburger md:hidden focus:outline-none"
+            onClick={openHamburger}
+          >
+            <span className="hamburger-top"></span>
+            <span className="hamburger-middle"></span>
+            <span className="hamburger-bottom"></span>
+          </button>
           <div className="py-2">
             <Link to="/" className="text-darkBlue text-3xl font-semibold">
               FastKitchen
@@ -53,18 +65,6 @@ const Navigation = ({ checkoutArr }) => {
               <ItemsInCart checkoutArr={checkoutArr} />
             </button>
           </Link>
-          {
-            // Hamburger Icon
-          }
-          <button
-            id="menu-btn"
-            className="block hamburger md:hidden focus:outline-none"
-            onClick={openHamburger}
-          >
-            <span className="hamburger-top"></span>
-            <span className="hamburger-middle"></span>
-            <span className="hamburger-bottom"></span>
-          </button>
         </div>
         {
           // Mobile Menu

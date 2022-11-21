@@ -81,7 +81,7 @@ const Checkout = ({
   } else if (wishList.length !== 0) {
     return (
       <div className="flex flex-col justify-center pt-36 mx-auto">
-        <h1 className="text-4xl text-center text-gray-600 h-64">
+        <h1 className="text-4xl text-center text-gray-600 h-[90vh]">
           Your cart is empty...
         </h1>
         <section className="text-gray-600 body-font">
@@ -112,7 +112,7 @@ const Checkout = ({
   } else {
     return (
       <div className="flex flex-col justify-center pt-36 mx-auto">
-        <h1 className="text-4xl text-center text-gray-600 h-96">
+        <h1 className="text-4xl text-center text-gray-600 h-[90vh]">
           Your cart is empty...
         </h1>
       </div>

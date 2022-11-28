@@ -1,22 +1,11 @@
 const Features = () => {
   return (
     <section id="features">
-      {
-        // Flex Container
-      }
       <div className="container flex flex-col px-4 mx-auto mt-36 my-24 space-y-12 md:space-y-0 md:flex-row">
-        {
-          // What's Different
-        }
         <div className="flex flex-col items-center space-y-12 md:w-1/2">
           <h2 className="max-w-md text-4xl font-bold text-center md:text-left">
             What's Different about FastKitchen?
           </h2>
-          <img
-            className="rounded-xl md:mr-10 md:ml-5"
-            src="https://source.unsplash.com/Q9VEWorDhaY"
-            alt="img1"
-          />
           <p className="max-w-sm text-center text-darkGrayishBlue md:text-left md:mr-10 md:ml-5">
             There is something for everyone here. The vegetarians,
             non-vegetarians, the sides’ lovers and also the ones who love to
@@ -26,17 +15,11 @@ const Features = () => {
           </p>
           <img
             className="rounded-xl md:mr-10 md:ml-5"
-            src="https://source.unsplash.com/MQUqbmszGGM"
-            alt="img1"
+            src="https://i.pinimg.com/originals/c2/a9/79/c2a97938c991dacb0d80120f524f2426.jpg"
+            alt="woman eating pizza"
           />
         </div>
-        {
-          // Numbered List
-        }
         <div className="flex flex-col space-y-8 md:w-1/2">
-          {
-            // List Items
-          }
           <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
             <div className="rounded-l-full md:bg-transparant">
               <div className="flex items-center space-x-2">
@@ -67,10 +50,6 @@ const Features = () => {
               </p>
             </div>
           </div>
-
-          {
-            // List Items
-          }
           <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
             <div className="rounded-l-full md:bg-transparant">
               <div className="flex items-center space-x-2">
@@ -99,10 +78,6 @@ const Features = () => {
               </p>
             </div>
           </div>
-
-          {
-            // List Items
-          }
           <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
             <div className="rounded-l-full md:bg-transparant">
               <div className="flex items-center space-x-2">

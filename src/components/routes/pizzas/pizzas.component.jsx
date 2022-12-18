@@ -1,6 +1,5 @@
 import Card from "../../Card/Card.component";
 import pizzas from "./data.json";
-import shortid from "shortid";
 
 const Pizza = ({
   wishList,
@@ -14,7 +13,7 @@ const Pizza = ({
         pizzas.map((pizza) => {
           return (
             <Card
-              key={shortid.generate()}
+              key={Math.random()}
               pizza={pizza}
               wishList={wishList}
               handleSetWishList={handleSetWishList}

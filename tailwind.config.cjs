@@ -1,15 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/tw-elements/dist/js/**/*.js",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1440px",
+      "sm": "480px",
+      "normal": "625px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1440px",
+      "2xl": "1536px",
     },
     extend: {
       colors: {
@@ -24,5 +23,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tw-elements/dist/plugin")],
+  plugins: [],
 };

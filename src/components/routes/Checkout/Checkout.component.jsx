@@ -1,7 +1,6 @@
 import CheckoutCard from "../../CheckoutCard/CheckoutCard.component";
 import { Fragment, useEffect, useState } from "react";
 import WishList from "../../WishList/WishList.component";
-import shortid from "shortid";
 
 const Checkout = ({
   checkoutArr,
@@ -34,7 +33,7 @@ const Checkout = ({
             checkoutArr.map((pizza) => {
               return (
                 <CheckoutCard
-                  key={shortid.generate()}
+                  key={Math.random()}
                   pizza={pizza}
                   handleRemovePizza={handleRemovePizza}
                   handleUpdatePizza={handleUpdatePizza}

@@ -7,22 +7,22 @@ import InstagramImg from "../../../img/icon-instagram.svg";
 
 const Contacts = () => {
   return (
-    <div className="bg-veryDarkBlue mt-24 ">
+    <div className="mt-24 bg-veryDarkBlue ">
       {
         // Flex Container
       }
-      <div className="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
+      <div className="container mx-auto flex flex-col-reverse justify-between space-y-8 px-6 py-10 md:flex-row md:space-y-0">
         {
           // Logo and social links container
         }
-        <div className="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start">
+        <div className="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:items-start md:space-y-0">
           <div className="mx-auto my-6 text-center text-white md:hidden">
             Copyright &copy; 2022, All Rights Reserved
           </div>
           {
             // Logo
           }
-          <Link to="/" className="text-white text-4xl font-semibold">
+          <Link to="/" className="text-4xl font-semibold text-white">
             FastKitchen
           </Link>
           {
@@ -51,27 +51,27 @@ const Contacts = () => {
         }
         <div className="flex justify-around space-x-20">
           <div className="flex flex-col space-y-3 text-white">
-            <Link to="/" className="hover:text-brightRed">
+            <Link to="/" className="text-white hover:text-brightRed">
               About Us
             </Link>
-            <Link to="/pizza" className="hover:text-brightRed">
+            <Link to="/pizza" className="text-white hover:text-brightRed">
               Pizza
             </Link>
-            <Link to="/reviews" className="hover:text-brightRed">
+            <Link to="/reviews" className="text-white hover:text-brightRed">
               Reviews
             </Link>
-            <Link to="/features" className="hover:text-brightRed">
+            <Link to="/features" className="text-white hover:text-brightRed">
               Features
             </Link>
           </div>
           <div className="flex flex-col space-y-3 text-white">
-            <Link to="/contacts" className="hover:text-brightRed">
+            <Link to="/contacts" className="text-white hover:text-brightRed">
               Careers
             </Link>
-            <Link to="/contacts" className="hover:text-brightRed">
+            <Link to="/contacts" className="text-white hover:text-brightRed">
               Community
             </Link>
-            <Link to="/contacts" className="hover:text-brightRed">
+            <Link to="/contacts" className="text-white hover:text-brightRed">
               Privacy Policy
             </Link>
           </div>
@@ -85,9 +85,9 @@ const Contacts = () => {
               <input
                 type="text"
                 placeholder="Updated in your inbox"
-                className="flex-1 px-4 rounded-full focus:outline-none"
+                className="flex-1 rounded-full px-4 focus:outline-none"
               />
-              <button className="px-6 py-2 text-white rounded-full bg-brightRed hover:bg-brightRedLight focus:outline-none">
+              <button className="rounded-full bg-brightRed px-6 py-2 text-white hover:bg-brightRedLight focus:outline-none">
                 Go
               </button>
             </div>

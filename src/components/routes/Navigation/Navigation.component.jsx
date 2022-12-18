@@ -54,9 +54,9 @@ const Navigation = ({ checkoutArr }) => {
               <svg
                 className="h-5 w-5 fill-gray-400"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >

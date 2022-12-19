@@ -1,32 +1,26 @@
 import React, { useContext } from "react";
 import CheckoutCard from "../../CheckoutCard/CheckoutCard.component";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import WishList from "../../WishList/WishList.component";
 import { CartContext } from "../../../context/cart.context";
 import { WishlistContext } from "../../../context/wishlist.context";
 
 const Checkout = () => {
-  const [totalObjectSum, setTotalObjectSum] = useState([]);
-  const { checkoutArr } = useContext(CartContext);
+  const { checkoutArr, cartTotal } = useContext(CartContext);
   const { wishList } = useContext(WishlistContext);
 
-  useEffect(() => {
-    let sum = 0;
-    for (let inst of checkoutArr) {
-      sum += inst.subTotal;
-    }
-    setTotalObjectSum(sum);
-  }, [checkoutArr]);
 
   const revealWishList = () => {
     const checkout_wishlist = document.querySelector("#checkout_wishlist");
+    const wishlist_prompt = document.querySelector("#wishlist_prompt");
     checkout_wishlist.classList.toggle("hidden");
+    wishlist_prompt.classList.toggle("hidden");
   };
 
   if (checkoutArr.length !== 0) {
     return (
       <Fragment>
-        <div className="mx-auto flex w-5/6 flex-col justify-center pt-36">
+        <div className="mx-auto flex flex-col justify-center pt-36">
           {checkoutArr &&
             checkoutArr.map((pizza) => {
               return <CheckoutCard key={Math.random()} pizza={pizza} />;
@@ -39,7 +33,7 @@ const Checkout = () => {
                 YOUR TOTAL PAYABLE AMOUNT IS
               </h2>
               <h1 className="title-font text-2xl font-medium text-gray-900 md:text-3xl">
-                {`₹ ${totalObjectSum}`}
+                {`₹ ${cartTotal}`}
               </h1>
             </div>
             <div className="mx-2 flex flex-shrink-0 items-center space-x-4 md:mx-auto md:ml-auto md:mr-0">
@@ -66,13 +60,13 @@ const Checkout = () => {
         </section>
       </Fragment>
     );
-  } else if (wishList.length !== 0) {
+  } else if (wishList.length) {
     return (
-      <div className="mx-auto flex flex-col justify-center pt-36">
-        <div className="flex min-h-screen items-center justify-center text-center text-4xl text-gray-600">
+      <div className="mx-auto min-h-screen flex flex-col justify-center pt-36">
+        <div className="flex items-center justify-center text-center text-4xl text-gray-600">
           <h1>Your cart is empty...</h1>
         </div>
-        <section className="body-font text-gray-600">
+        <section id="wishlist_prompt" className="body-font text-gray-600">
           <div className="container mx-auto px-5 pt-24">
             <div className="mx-auto flex flex-col items-start sm:flex-row sm:items-center lg:w-2/3">
               <h1 className="title-font flex-grow text-2xl font-medium text-gray-900 sm:pr-16">
@@ -94,8 +88,8 @@ const Checkout = () => {
     );
   } else {
     return (
-      <div className="mx-auto flex flex-col justify-center pt-36">
-        <div className="flex min-h-screen items-center justify-center text-center text-4xl text-gray-600">
+      <div className="mx-auto min-h-screen flex flex-col justify-center pt-36">
+        <div className="flex items-center justify-center text-center text-4xl text-gray-600">
           <h1>Your cart is empty...</h1>
         </div>
       </div>

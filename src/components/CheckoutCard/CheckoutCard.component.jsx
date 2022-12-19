@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
-import { WishlistContext } from "../../context/wishlist.context";
+import { CartContext } from "../../context/cart.context";
 import Category from "../Category/Category.component";
 
-const CheckoutCard = ({pizza}) => {
-  const { handleRemovePizza, handleUpdatePizza } = useContext(WishlistContext);
+const CheckoutCard = ({ pizza }) => {
+  const { handleRemovePizza, handleUpdatePizza } = useContext(CartContext);
   const { name, image, prices, category } = pizza;
 
   const [quantity, setQuantity] = useState(pizza.quantity);
@@ -16,8 +16,8 @@ const CheckoutCard = ({pizza}) => {
   }, [quantity, size, prices]);
 
   return (
-    <div className="body-font overflow-hidden bg-orange-200 text-gray-600">
-      <div className="container mx-auto px-5 py-12">
+    <div className="body-font overflow-hidden bg-cyan-900 text-gray-600">
+      <div className="container max-w-xl lg:max-w-6xl mx-auto px-5 py-12">
         <div className="mx-auto flex flex-wrap justify-center lg:w-4/5">
           <img
             alt="ecommerce"
@@ -26,23 +26,23 @@ const CheckoutCard = ({pizza}) => {
           />
           <div className="mt-6 w-full lg:mt-0 lg:w-2/5 lg:py-6 lg:pl-10">
             <div className="mb-4 flex justify-between">
-              <h1 className="title-font mb-1 text-2xl font-medium text-gray-900">
+              <h1 className="title-font mb-1 text-2xl font-medium text-white">
                 {name}
               </h1>
             </div>
             <div className="flex">
-              <h2 className="title-font pr-2 text-sm tracking-widest text-gray-500">
+              <h2 className="title-font pr-2 text-sm tracking-widest text-gray-100">
                 {`CATEGORY - ${category.toUpperCase()}`}
               </h2>
               <Category category={category} />
             </div>
-            <div className="mt-6 mb-5 flex flex-col items-start border-b-2 border-gray-100 pb-5 sm:flex-row">
-              <div className="my-1 ml-2 flex items-center">
-                <span className="mr-3">Quantity</span>
+            <div className="mt-6 mb-5 flex flex-row items-start border-b-2 border-gray-100 pb-5">
+              <div className="my-1 flex items-center">
+                <span className="mr-3 text-gray-300">Quantity</span>
                 <div className="relative">
                   <select
                     onChange={(event) => {
-                      const tempQuantity = event.target.value;
+                      const tempQuantity = Number.parseInt(event.target.value);
                       setQuantity(tempQuantity);
                       handleUpdatePizza(
                         pizza,
@@ -55,7 +55,9 @@ const CheckoutCard = ({pizza}) => {
                     className="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
                   >
                     {[...Array(10).keys()].map((inst) => (
-                      <option key={Math.random()} value={inst + 1}>{inst + 1}</option>
+                      <option key={Math.random()} value={inst + 1}>
+                        {inst + 1}
+                      </option>
                     ))}
                   </select>
                   <span className="pointer-events-none absolute right-0 top-0 flex h-full w-10 items-center justify-center text-center text-gray-600">
@@ -74,7 +76,7 @@ const CheckoutCard = ({pizza}) => {
                 </div>
               </div>
               <div className="my-1 ml-2 flex items-center">
-                <span className="mr-3">Size</span>
+                <span className="mr-3 text-gray-300">Size</span>
                 <div className="relative">
                   <select
                     onChange={(event) => {
@@ -110,19 +112,26 @@ const CheckoutCard = ({pizza}) => {
                 </div>
               </div>
             </div>
+            <div>
+              {quantity === 10 ? (
+                <h1 className="text-red-600">
+                  Max allowable order quantity for given size
+                </h1>
+              ) : (
+                <span></span>
+              )}
+            </div>
             <div className="flex">
-              <span className="title-font pr-3 text-2xl font-medium text-gray-900">
+              <span className="title-font pr-3 text-2xl font-medium text-white">
                 {`₹ ${subTotal}`}
               </span>
               <button
-                onClick={() => {
-                  handleRemovePizza(pizza);
-                }}
-                className="ml-auto flex rounded border-0 bg-gray-500 py-2 px-3 text-white hover:bg-brightRed focus:outline-none"
+                onClick={() => handleRemovePizza(pizza)}
+                className="ml-auto flex rounded border-0 bg-gray-200 py-2 px-3 text-white hover:bg-brightRed focus:outline-none"
               >
                 <div className="h-4 w-4">
                   <svg
-                    className="fill-white"
+                    className="fill-gray-700"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
                   >

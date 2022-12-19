@@ -10,7 +10,7 @@ const WishList = () => {
     return (
         <div className="flex flex-col justify-center pt-36 w-5/6 mx-auto">
         {wishList && wishList.map((pizza) => {
-          return <Card pizza={pizza}/>;
+          return <Card key={Math.random()} pizza={pizza}/>;
         })}
       </div>
     )

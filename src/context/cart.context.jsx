@@ -13,12 +13,27 @@ export const CartContext = createContext({
     const [cartTotal, setCartTotal] = useState(0);
     const [cartLength, setCartLength] = useState(0);
 
+    useEffect(() => {
+      const newCartTotal = checkoutArr.reduce((acc, inst) => acc + inst.subTotal, 0)
+      const newCartLength = checkoutArr.reduce((acc, inst) => acc + inst.quantity, 0)
+      setCartTotal(newCartTotal)
+      setCartLength(newCartLength)
+    }, [checkoutArr])
+
     const handleAddPizza = (pizza, quantity, size, subTotal) => {
-      const newPizza = {};
-      Object.assign(newPizza, pizza);
-      Object.assign(newPizza, { quantity, size, subTotal });
-      checkoutArr.push(newPizza);
-      setCheckoutArr([...checkoutArr]);
+      const newPizza = {...pizza, quantity, size, subTotal}
+
+      for(let inst of checkoutArr){
+        if(inst.name === newPizza.name && inst.size === newPizza.size){
+          inst.quantity += newPizza.quantity
+          if(inst.quantity > 10){
+            inst.quantity = 10
+          }
+          setCheckoutArr([...checkoutArr])
+          return
+        }
+      }
+      setCheckoutArr([...checkoutArr, newPizza]);
     };
 
     const handleRemovePizza = (pizza) => {
@@ -29,7 +44,7 @@ export const CartContext = createContext({
   
     const handleUpdatePizza = (pizza, quantity, size, subTotal) => {
       const index = checkoutArr.indexOf(pizza);
-      Object.assign(checkoutArr[index], { quantity, size, subTotal });
+      Object.assign(checkoutArr[index], {quantity, size, subTotal})
       setCheckoutArr([...checkoutArr]);
     };
 

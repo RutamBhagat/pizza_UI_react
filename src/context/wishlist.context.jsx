@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 export const WishlistContext = createContext({
   wishList: [],
   handleSetWishList: () => null
@@ -9,7 +9,16 @@ export const WishlistProvider = ({ children }) => {
 
   const handleSetWishList = (pizza, command) => {
     if (command === "add") {
-      setWishList([...wishList, pizza]);
+      const notPresent = true
+      for(let inst of wishList){
+        if(inst.name == pizza.name){
+          notPresent = false
+          break
+        }
+      }
+      if(notPresent){
+        setWishList([...wishList, pizza]);
+      }
     } else {
       const index = wishList.indexOf(pizza);
       wishList.splice(index, 1);

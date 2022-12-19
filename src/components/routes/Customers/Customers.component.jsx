@@ -62,7 +62,7 @@ const Customers = () => {
               backgroundImage: `url(https://i.pinimg.com/originals/60/6a/34/606a34cb62a68045ba044fd720b2d59e.jpg)`,
             }}
           ></div>
-          <h5 className="mb-5 text-3xl font-bold">April Oniel</h5>
+          <h5 className="mb-5 text-3xl font-bold">April O'Neil</h5>
           <p className="text-sm">
             “We arrived about 10 min. after opening, 16 tables had been given
             away by that time. There was a light crowd waiting outside the

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <section id="hero">
-      <div className="container flex flex-col-reverse items-center px-6 mx-auto mt-36 space-y-0 md:space-y-0 md:flex-row">
-        <div className="flex flex-col mb-32 space-y-12 md:w-1/2">
+      <div className="container max-w-7xl flex flex-col-reverse items-center px-6 mx-auto mt-36 space-y-0 md:space-y-0 lg:flex-row">
+        <div className="flex flex-col space-y-12">
           <h1 className="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left">
             FastKitchen: Delivering Happiness
           </h1>
@@ -21,16 +21,16 @@ const Home = () => {
             all you have to do to have that tempting, light-on-the-pocket pizza
             at your doorstep.
           </p>
-          <div className="flex justify-center md:justify-start">
+          <button className="flex pb-12 justify-center md:justify-start">
             <Link
               to="/pizza"
               className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
             >
               Buy Pizza
             </Link>
-          </div>
+          </button>
         </div>
-        <div className="md:w-1/2 md:ml-10 pb-12">
+        <div className="md:w-3/4 md:ml-10 pb-10 lg:pb-0">
           <img className="rounded-xl" src="https://images.alphacoders.com/859/thumb-1920-859458.jpg" alt="pizza1" />
         </div>
       </div>

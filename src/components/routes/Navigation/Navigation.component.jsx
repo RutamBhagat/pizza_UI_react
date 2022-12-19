@@ -1,10 +1,13 @@
+import React, { useContext } from "react";
 import { Fragment } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { CartContext } from "../../../context/cart.context";
 import ItemsInCart from "../../ItemsInCart/ItemsInCart.component";
 import "./Navigation.css";
 import NavigationLinks from "./NavigationLinks.component";
 
-const Navigation = ({ checkoutArr }) => {
+const Navigation = () => {
+  const { checkoutArr } = useContext(CartContext);
   const openHamburger = () => {
     const btn = document.querySelector("#menu-btn");
     const nav = document.querySelector("#menu");
@@ -17,14 +20,14 @@ const Navigation = ({ checkoutArr }) => {
       {
         // Navbar
       }
-      <nav className="z-10 mx-auto p-6 fixed top-0 left-0 right-0 bg-white bg-opacity-60">
+      <nav className="fixed top-0 left-0 right-0 z-10 mx-auto bg-white bg-opacity-60 p-6">
         <div className="flex items-center justify-between">
           {
             // Hamburger Icon
           }
           <button
             id="menu-btn"
-            className="block hamburger md:hidden focus:outline-none"
+            className="hamburger block focus:outline-none md:hidden"
             onClick={openHamburger}
           >
             <span className="hamburger-top"></span>
@@ -32,7 +35,7 @@ const Navigation = ({ checkoutArr }) => {
             <span className="hamburger-bottom"></span>
           </button>
           <div className="py-2">
-            <Link to="/" className="text-darkBlue text-3xl font-semibold">
+            <Link to="/" className="text-3xl font-semibold text-darkBlue">
               FastKitchen
             </Link>
           </div>
@@ -44,11 +47,11 @@ const Navigation = ({ checkoutArr }) => {
           }
           <Link
             to="/checkout"
-            className="flex p-3 px-4 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+            className="baseline flex rounded-full bg-brightRed p-3 px-4 pt-2 text-white hover:bg-brightRedLight"
           >
             <span className="text-lg">Order</span>
             <button
-              className="relative border-2 border-transparent text-gray-800 rounded-full hidden sm:block hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+              className="relative hidden rounded-full border-2 border-transparent text-gray-800 transition duration-150 ease-in-out hover:text-gray-400 focus:text-gray-500 focus:outline-none sm:block"
               aria-label="Cart"
             >
               <svg
@@ -71,7 +74,7 @@ const Navigation = ({ checkoutArr }) => {
         }
         <div className="md:hidden">
           <div
-            className="hidden absolute flex flex-col items-center self-end py-8 mt-10 space-y-6 bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
+            className="absolute left-6 right-6 mt-10 flex hidden flex-col items-center space-y-6 self-end bg-white py-8 drop-shadow-md sm:w-auto sm:self-center"
             id="menu"
           >
             <NavigationLinks />

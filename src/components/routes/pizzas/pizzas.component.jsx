@@ -1,24 +1,17 @@
+import React from "react";
 import Card from "../../Card/Card.component";
 import pizzas from "./data.json";
 
-const Pizza = ({
-  wishList,
-  handleSetWishList,
-  handleAddPizza,
-  checkoutArr,
-}) => {
+
+const Pizza = () => {
   return (
-    <div className="flex flex-col justify-center pt-36 w-5/6 mx-auto">
+    <div className="mx-auto flex w-5/6 flex-col justify-center pt-36">
       {pizzas &&
         pizzas.map((pizza) => {
           return (
             <Card
               key={Math.random()}
               pizza={pizza}
-              wishList={wishList}
-              handleSetWishList={handleSetWishList}
-              handleAddPizza={handleAddPizza}
-              checkoutArr={checkoutArr}
             />
           );
         })}

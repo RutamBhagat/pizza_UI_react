@@ -1,57 +1,43 @@
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
+import { WishlistContext } from "../../context/wishlist.context";
 import Category from "../Category/Category.component";
 
-const CheckoutCard = ({
-  pizza,
-  wishList,
-  handleSetWishList,
-  handleRemovePizza,
-  handleUpdatePizza,
-}) => {
+const CheckoutCard = ({pizza}) => {
+  const { handleRemovePizza, handleUpdatePizza } = useContext(WishlistContext);
   const { name, image, prices, category } = pizza;
 
   const [quantity, setQuantity] = useState(pizza.quantity);
   const [size, setSize] = useState(pizza.size);
   const [subTotal, setSubTotal] = useState(pizza.quantity * prices[pizza.size]);
-  const [buttonActive, setButtonActive] = useState(wishList.includes(name));
 
   useEffect(() => {
     setSubTotal(quantity * prices[size]);
   }, [quantity, size, prices]);
 
-  const handleClick = () => {
-    if (buttonActive) {
-      handleSetWishList(name, "remove");
-    } else {
-      handleSetWishList(name, "add");
-    }
-    setButtonActive(!buttonActive);
-    // !buttonActive means opposite of button activity state i.e. if true then make it false
-  };
-
   return (
-    <div className="text-gray-600 body-font overflow-hidden bg-orange-200">
-      <div className="container px-5 py-12 mx-auto">
-        <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
+    <div className="body-font overflow-hidden bg-orange-200 text-gray-600">
+      <div className="container mx-auto px-5 py-12">
+        <div className="mx-auto flex flex-wrap justify-center lg:w-4/5">
           <img
             alt="ecommerce"
-            className="w-5/6 lg:w-3/5 h-64 md:h-72 my-5 object-cover object-center rounded"
+            className="my-5 h-64 w-5/6 rounded object-cover object-center md:h-72 lg:w-3/5"
             src={`${image}`}
           />
-          <div className="lg:w-2/5 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <div className="flex mb-4 justify-between">
-              <h1 className="text-gray-900 text-2xl title-font font-medium mb-1">
+          <div className="mt-6 w-full lg:mt-0 lg:w-2/5 lg:py-6 lg:pl-10">
+            <div className="mb-4 flex justify-between">
+              <h1 className="title-font mb-1 text-2xl font-medium text-gray-900">
                 {name}
               </h1>
             </div>
             <div className="flex">
-              <h2 className="pr-2 text-sm title-font text-gray-500 tracking-widest">
+              <h2 className="title-font pr-2 text-sm tracking-widest text-gray-500">
                 {`CATEGORY - ${category.toUpperCase()}`}
               </h2>
               <Category category={category} />
             </div>
-            <div className="flex flex-col mt-6 items-start pb-5 border-b-2 border-gray-100 mb-5 sm:flex-row">
-              <div className="flex ml-2 my-1 items-center">
+            <div className="mt-6 mb-5 flex flex-col items-start border-b-2 border-gray-100 pb-5 sm:flex-row">
+              <div className="my-1 ml-2 flex items-center">
                 <span className="mr-3">Quantity</span>
                 <div className="relative">
                   <select
@@ -66,20 +52,20 @@ const CheckoutCard = ({
                       );
                     }}
                     value={quantity}
-                    className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 text-base pl-3 pr-10"
+                    className="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
                   >
                     {[...Array(10).keys()].map((inst) => (
-                      <option value={inst + 1}>{inst + 1}</option>
+                      <option key={Math.random()} value={inst + 1}>{inst + 1}</option>
                     ))}
                   </select>
-                  <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                  <span className="pointer-events-none absolute right-0 top-0 flex h-full w-10 items-center justify-center text-center text-gray-600">
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      className="w-4 h-4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4"
                       viewBox="0 0 24 24"
                     >
                       <path d="M6 9l6 6 6-6"></path>
@@ -87,7 +73,7 @@ const CheckoutCard = ({
                   </span>
                 </div>
               </div>
-              <div className="flex ml-2 my-1 items-center">
+              <div className="my-1 ml-2 flex items-center">
                 <span className="mr-3">Size</span>
                 <div className="relative">
                   <select
@@ -102,20 +88,20 @@ const CheckoutCard = ({
                       );
                     }}
                     value={size}
-                    className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 text-base pl-3 pr-10"
+                    className="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
                   >
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
                   </select>
-                  <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                  <span className="pointer-events-none absolute right-0 top-0 flex h-full w-10 items-center justify-center text-center text-gray-600">
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      className="w-4 h-4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4"
                       viewBox="0 0 24 24"
                     >
                       <path d="M6 9l6 6 6-6"></path>
@@ -125,16 +111,16 @@ const CheckoutCard = ({
               </div>
             </div>
             <div className="flex">
-              <span className="pr-3 title-font font-medium text-2xl text-gray-900">
+              <span className="title-font pr-3 text-2xl font-medium text-gray-900">
                 {`₹ ${subTotal}`}
               </span>
               <button
                 onClick={() => {
                   handleRemovePizza(pizza);
                 }}
-                className="flex ml-auto text-white bg-gray-500 border-0 py-2 px-3 focus:outline-none hover:bg-brightRed rounded"
+                className="ml-auto flex rounded border-0 bg-gray-500 py-2 px-3 text-white hover:bg-brightRed focus:outline-none"
               >
-                <div className="w-4 h-4">
+                <div className="h-4 w-4">
                   <svg
                     className="fill-white"
                     xmlns="http://www.w3.org/2000/svg"

@@ -1,16 +1,15 @@
+import React, { useContext } from "react";
 import Stars from "../Stars/Stars.component";
 import Category from "../Category/Category.component";
 import { useState, useEffect } from "react";
 import ItemsInCart from "../ItemsInCart/ItemsInCart.component";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/cart.context";
+import { WishlistContext } from "../../context/wishlist.context"
 
-const Card = ({
-  pizza,
-  wishList,
-  handleSetWishList,
-  handleAddPizza,
-  checkoutArr,
-}) => {
+const Card = ({pizza}) => {
+  const { checkoutArr, handleAddPizza } = useContext(CartContext);
+  const { wishList, handleSetWishList } = useContext(WishlistContext);
   const { name, description, image, prices, category, stars, reviews } = pizza;
 
   const [quantity, setQuantity] = useState(1);
@@ -91,16 +90,16 @@ const Card = ({
                     className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 text-base pl-3 pr-10"
                   >
                     {[...Array(10).keys()].map((inst) => (
-                      <option value={inst + 1}>{inst + 1}</option>
+                      <option key={Math.random()} value={inst + 1}>{inst + 1}</option>
                     ))}
                   </select>
                   <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       className="w-4 h-4"
                       viewBox="0 0 24 24"
                     >
@@ -127,9 +126,9 @@ const Card = ({
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       className="w-4 h-4"
                       viewBox="0 0 24 24"
                     >
@@ -159,9 +158,9 @@ const Card = ({
                   <svg
                     className="h-6 w-6"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >

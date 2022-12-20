@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../context/cart.context";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectCartLength } from "../../store/cart/cart.selector";
 
 
 const ItemsInCart = () => {
-  const { cartLength } = useContext(CartContext);
+  const cartLength = useSelector(selectCartLength)
   if (cartLength !== 0) {
     return (
       <span className="absolute inset-0 -mr-6 object-right-top">

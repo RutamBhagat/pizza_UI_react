@@ -2,13 +2,17 @@ import React, { useContext } from "react";
 import CheckoutCard from "../../CheckoutCard/CheckoutCard.component";
 import { Fragment } from "react";
 import WishList from "../../WishList/WishList.component";
-import { CartContext } from "../../../context/cart.context";
-import { WishlistContext } from "../../../context/wishlist.context";
+import { useSelector } from "react-redux";
+import {
+  selectCartTotal,
+  selectCheckoutArr,
+} from "../../../store/cart/cart.selector";
+import { selectWishList } from "../../../store/wishlist/wishlist.selector";
 
 const Checkout = () => {
-  const { checkoutArr, cartTotal } = useContext(CartContext);
-  const { wishList } = useContext(WishlistContext);
-
+  const checkoutArr = useSelector(selectCheckoutArr);
+  const cartTotal = useSelector(selectCartTotal);
+  const wishList = useSelector(selectWishList)
 
   const revealWishList = () => {
     const checkout_wishlist = document.querySelector("#checkout_wishlist");
@@ -62,7 +66,7 @@ const Checkout = () => {
     );
   } else if (wishList.length) {
     return (
-      <div className="mx-auto min-h-screen flex flex-col justify-center pt-36">
+      <div className="mx-auto flex min-h-screen flex-col justify-center pt-36">
         <div className="flex items-center justify-center text-center text-4xl text-gray-600">
           <h1>Your cart is empty...</h1>
         </div>
@@ -88,7 +92,7 @@ const Checkout = () => {
     );
   } else {
     return (
-      <div className="mx-auto min-h-screen flex flex-col justify-center pt-36">
+      <div className="mx-auto flex min-h-screen flex-col justify-center pt-36">
         <div className="flex items-center justify-center text-center text-4xl text-gray-600">
           <h1>Your cart is empty...</h1>
         </div>

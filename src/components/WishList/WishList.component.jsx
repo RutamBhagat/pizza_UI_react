@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
-import { WishlistContext } from "../../context/wishlist.context";
+import { useSelector } from "react-redux";
+import { selectWishList } from "../../store/wishlist/wishlist.selector";
 import Card from "../Card/Card.component";
 
-
-// {wishList, handleSetWishList, handleAddPizza, checkoutArr}
-
 const WishList = () => {
-  const {wishList} = useContext(WishlistContext)
-    return (
-        <div className="flex flex-col justify-center pt-36 w-5/6 mx-auto">
-        {wishList && wishList.map((pizza) => {
-          return <Card key={Math.random()} pizza={pizza}/>;
+  const wishList = useSelector(selectWishList);
+  return (
+    <div className="mx-auto flex flex-col justify-center pt-36">
+      {wishList &&
+        wishList.map((pizza) => {
+          return <Card key={Math.random()} pizza={pizza} />;
         })}
-      </div>
-    )
-}
+    </div>
+  );
+};
 
-export default WishList
+export default WishList;

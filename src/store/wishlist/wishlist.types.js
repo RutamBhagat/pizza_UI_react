@@ -1,0 +1,3 @@
+export const WISHLIST_ACTION_TYPES = {
+    SET_WISHLIST_ITEMS: "wishList/SET_WISHLIST_ITEMS"
+  }

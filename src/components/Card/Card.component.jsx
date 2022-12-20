@@ -1,15 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Stars from "../Stars/Stars.component";
 import Category from "../Category/Category.component";
-import { useState, useEffect } from "react";
 import ItemsInCart from "../ItemsInCart/ItemsInCart.component";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../context/cart.context";
-import { WishlistContext } from "../../context/wishlist.context";
+import { useDispatch, useSelector } from "react-redux";
+import { handleAddPizza } from "../../store/cart/cart.action";
+import { selectCheckoutArr } from "../../store/cart/cart.selector";
+import { selectWishList } from "../../store/wishlist/wishlist.selector";
+import { handleSetWishList } from "../../store/wishlist/wishlist.action";
 
 const Card = ({ pizza }) => {
-  const { checkoutArr, handleAddPizza } = useContext(CartContext);
-  const { wishList, handleSetWishList } = useContext(WishlistContext);
+  const dispatch = useDispatch()
+  const checkoutArr = useSelector(selectCheckoutArr)
+  const wishList = useSelector(selectWishList)
   const { name, description, image, prices, category, stars, reviews } = pizza;
 
   const [quantity, setQuantity] = useState(1);
@@ -23,9 +26,9 @@ const Card = ({ pizza }) => {
 
   const handleClick = () => {
     if (buttonActive) {
-      handleSetWishList(pizza, "remove");
+      dispatch(handleSetWishList(wishList, pizza, "remove"));
     } else {
-      handleSetWishList(pizza, "add");
+      dispatch(handleSetWishList(wishList, pizza, "add"));
     }
     setButtonActive(!buttonActive);
   };
@@ -37,7 +40,7 @@ const Card = ({ pizza }) => {
           <div className="flex items-center md:w-1/2 lg:w-3/5">
             <img
               alt="ecommerce"
-              className="h-64 rounded-lg border-white border-2 object-cover object-center"
+              className="h-64 rounded-lg border-2 border-white object-cover object-center"
               src={`${image}`}
             />
           </div>
@@ -156,7 +159,7 @@ const Card = ({ pizza }) => {
                 {`₹ ${subTotal}`}
               </span>
               <button
-                onClick={() => handleAddPizza(pizza, quantity, size, subTotal)}
+                onClick={() => dispatch(handleAddPizza(checkoutArr, pizza, quantity, size, subTotal))}
                 className="ml-auto flex rounded border-0 bg-brightRed py-2 px-6 text-white hover:bg-brightRed focus:outline-none"
               >
                 Add Pizza

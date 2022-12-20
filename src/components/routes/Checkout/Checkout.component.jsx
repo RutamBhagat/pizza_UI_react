@@ -1,18 +1,23 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import CheckoutCard from "../../CheckoutCard/CheckoutCard.component";
 import { Fragment } from "react";
 import WishList from "../../WishList/WishList.component";
 import { useSelector } from "react-redux";
 import {
+  selectCartLength,
   selectCartTotal,
   selectCheckoutArr,
 } from "../../../store/cart/cart.selector";
 import { selectWishList } from "../../../store/wishlist/wishlist.selector";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import AlertComponent from "../../alertComponent/alert.component";
 
 const Checkout = () => {
   const checkoutArr = useSelector(selectCheckoutArr);
+  const cartLength = useSelector(selectCartLength);
   const cartTotal = useSelector(selectCartTotal);
-  const wishList = useSelector(selectWishList)
+  const wishList = useSelector(selectWishList);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   const revealWishList = () => {
     const checkout_wishlist = document.querySelector("#checkout_wishlist");
@@ -21,16 +26,101 @@ const Checkout = () => {
     wishlist_prompt.classList.toggle("hidden");
   };
 
-  if (checkoutArr.length !== 0) {
+  const showAlert = (id) => {
+    const alert = document.querySelector(`#${id}`);
+    alert.classList.toggle("hidden");
+  };
+
+  const stripe = useStripe();
+  const elements = useElements();
+  const paymentHandler = async (event) => {
+    event.preventDefault();
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setIsProcessingPayment(true);
+
+    const response = await fetch("/.netlify/functions/create-payment-intent", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: cartTotal * 100,
+      }),
+    }).then((res) => res.json());
+
+    const client_secret = response.paymentIntent.client_secret;
+
+    const paymentResult = await stripe.confirmCardPayment(client_secret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name: "Guest_FastKitchen",
+        },
+      },
+    });
+
+    setIsProcessingPayment(false);
+
+    if (paymentResult.error) {
+      showAlert("popup-modal-failed");
+    } else {
+      if (paymentResult.paymentIntent.status === "succeeded") {
+        showAlert("popup-modal-success");
+      }
+    }
+  };
+
+  if (cartLength) {
     return (
       <Fragment>
+        <div className="flex flex-row">
+          <AlertComponent
+            messages={[
+              "Card: 4000003560000008",
+              "Exp Date: any future date",
+              "CVC: any 3 digit number",
+            ]}
+            id="popup-modal-credit-card"
+            showAlert={showAlert}
+            type={"warning"}
+          />
+          <AlertComponent
+            messages={["Payment Successful"]}
+            id="popup-modal-success"
+            showAlert={showAlert}
+            type={"success"}
+          />
+          <AlertComponent
+            messages={["Payment Failed"]}
+            id="popup-modal-failed"
+            showAlert={showAlert}
+            type={"error"}
+          />
+        </div>
         <div className="mx-auto flex flex-col justify-center pt-28">
           {checkoutArr &&
             checkoutArr.map((pizza) => {
               return <CheckoutCard key={Math.random()} pizza={pizza} />;
             })}
         </div>
-        <section className="body-font text-gray-600">
+        <div className="flex justify-center rounded bg-cyan-900 p-3">
+          <div className="w-full max-w-2xl rounded-lg bg-white p-3">
+            <div className="flex justify-between p-5">
+              <div className="pb-3 text-gray-800">Card Details</div>
+              <button
+                onClick={() => showAlert("popup-modal-credit-card")}
+                className="rounded-md bg-gray-700 px-5 py-1 text-white hover:bg-gray-500"
+              >
+                Test Card
+              </button>
+            </div>
+            <CardElement />
+          </div>
+        </div>
+        <form className="body-font text-gray-600">
           <div className="container mx-auto flex flex-col items-center px-24 py-24 sm:flex-row">
             <div className="mb-6 flex w-full flex-col pr-0 text-center md:mb-0 md:w-auto md:pr-10 md:text-left">
               <h2 className="title-font mb-1 text-xs font-medium tracking-widest text-brightRed">
@@ -41,7 +131,13 @@ const Checkout = () => {
               </h1>
             </div>
             <div className="mx-2 flex flex-shrink-0 items-center space-x-4 md:mx-auto md:ml-auto md:mr-0">
-              <button className="inline-flex items-center rounded-lg bg-gray-600 py-3 px-5 hover:bg-gray-700 focus:outline-none">
+              <button
+                onClick={paymentHandler}
+                type="submit"
+                className={`inline-flex items-center rounded-lg bg-gray-600 py-3 px-5 hover:bg-gray-700 focus:outline-none ${
+                  isProcessingPayment ? "hidden" : ""
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -61,7 +157,7 @@ const Checkout = () => {
               </button>
             </div>
           </div>
-        </section>
+        </form>
       </Fragment>
     );
   } else if (wishList.length) {

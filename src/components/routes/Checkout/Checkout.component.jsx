@@ -117,7 +117,7 @@ const Checkout = () => {
                 Test Card
               </button>
             </div>
-            <CardElement />
+            <div className="rounded-lg p-5 bg-gray-300 my-auto"><CardElement /></div>
           </div>
         </div>
         <form className="body-font text-gray-600">

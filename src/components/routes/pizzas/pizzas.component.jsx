@@ -5,7 +5,7 @@ import pizzas from "./data.json";
 
 const Pizza = () => {
   return (
-    <div className="mx-auto flex flex-col justify-center pt-36">
+    <div className="mx-auto flex flex-col justify-center pt-28">
       {pizzas &&
         pizzas.map((pizza) => {
           return (

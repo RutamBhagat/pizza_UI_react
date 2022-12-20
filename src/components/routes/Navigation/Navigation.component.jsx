@@ -11,7 +11,6 @@ const Navigation = () => {
   const openHamburger = () => {
     const btn = document.querySelector("#menu-btn");
     const nav = document.querySelector("#menu");
-    console.log("clicked");
     btn.classList.toggle("open");
     nav.classList.toggle("hidden");
   };

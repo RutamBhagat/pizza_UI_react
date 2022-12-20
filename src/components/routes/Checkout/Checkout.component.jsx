@@ -20,7 +20,7 @@ const Checkout = () => {
   if (checkoutArr.length !== 0) {
     return (
       <Fragment>
-        <div className="mx-auto flex flex-col justify-center pt-36">
+        <div className="mx-auto flex flex-col justify-center pt-28">
           {checkoutArr &&
             checkoutArr.map((pizza) => {
               return <CheckoutCard key={Math.random()} pizza={pizza} />;

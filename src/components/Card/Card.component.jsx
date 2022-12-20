@@ -31,13 +31,13 @@ const Card = ({ pizza }) => {
   };
 
   return (
-    <div className="body-font overflow-hidden bg-cyan-900 text-gray-600">
-      <div className="container mx-auto max-w-xl px-5 py-12 md:max-w-4xl">
+    <div className="body-font overflow-hidden border-b-2 border-gray-500 bg-cyan-900 p-5 text-gray-600">
+      <div className="container mx-auto max-w-xl md:max-w-4xl">
         <div className="mx-auto flex flex-col justify-center md:flex-row">
           <div className="flex items-center md:w-1/2 lg:w-3/5">
             <img
               alt="ecommerce"
-              className="h-64 rounded-lg object-cover object-center"
+              className="h-64 rounded-lg border-white border-2 object-cover object-center"
               src={`${image}`}
             />
           </div>

@@ -21,7 +21,7 @@ const CheckoutCard = ({ pizza }) => {
         <div className="mx-auto flex flex-wrap justify-center lg:w-4/5">
           <img
             alt="ecommerce"
-            className="my-5 h-64 w-5/6 rounded object-cover object-center md:h-72 lg:w-3/5"
+            className="my-5 border-white border-2 h-64 w-5/6 rounded object-cover object-center md:h-72 lg:w-3/5"
             src={`${image}`}
           />
           <div className="mt-6 w-full lg:mt-0 lg:w-2/5 lg:py-6 lg:pl-10">

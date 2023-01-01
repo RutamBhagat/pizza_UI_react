@@ -1,19 +1,21 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Stars from "../Stars/Stars.component";
 import Category from "../Category/Category.component";
 import ItemsInCart from "../ItemsInCart/ItemsInCart.component";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { handleAddPizza } from "../../store/cart/cart.action";
-import { selectCheckoutArr } from "../../store/cart/cart.selector";
-import { selectWishList } from "../../store/wishlist/wishlist.selector";
-import { handleSetWishList } from "../../store/wishlist/wishlist.action";
+import shallow from "zustand/shallow";
+import { useWishListStore } from "../../store/wishlist/wishliststore";
+import { useCartStore } from "../../store/cart/cartstore";
 
 const Card = ({ pizza }) => {
-  const dispatch = useDispatch()
-  const checkoutArr = useSelector(selectCheckoutArr)
-  const wishList = useSelector(selectWishList)
   const { name, description, image, prices, category, stars, reviews } = pizza;
+  const checkoutArr = useCartStore((state) => state.checkoutArr, shallow);
+  const wishList = useWishListStore((state) => state.wishList, shallow);
+  const handleSetWishList = useWishListStore(
+    (state) => state.handleSetWishList,
+    shallow
+  );
+  const handleAddPizza = useCartStore((state) => state.handleAddPizza, shallow);
 
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("small");
@@ -26,9 +28,9 @@ const Card = ({ pizza }) => {
 
   const handleClick = () => {
     if (buttonActive) {
-      dispatch(handleSetWishList(wishList, pizza, "remove"));
+      handleSetWishList(pizza, "remove");
     } else {
-      dispatch(handleSetWishList(wishList, pizza, "add"));
+      handleSetWishList(pizza, "add");
     }
     setButtonActive(!buttonActive);
   };
@@ -159,7 +161,9 @@ const Card = ({ pizza }) => {
                 {`₹ ${subTotal}`}
               </span>
               <button
-                onClick={() => dispatch(handleAddPizza(checkoutArr, pizza, quantity, size, subTotal))}
+                onClick={() =>
+                  handleAddPizza(pizza, quantity, size, subTotal)
+                }
                 className="ml-auto flex rounded border-0 bg-brightRed py-2 px-6 text-white hover:bg-brightRed focus:outline-none"
               >
                 Add Pizza

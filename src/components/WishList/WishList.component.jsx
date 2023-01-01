@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { useSelector } from "react-redux";
-import { selectWishList } from "../../store/wishlist/wishlist.selector";
+import React from "react";
+import { useWishListStore } from "../../store/wishlist/wishliststore";
 import Card from "../Card/Card.component";
+import shallow from 'zustand/shallow';
 
 const WishList = () => {
-  const wishList = useSelector(selectWishList);
+  const wishList = useWishListStore((state) => state.wishList, shallow);
   return (
     <div className="mx-auto flex flex-col justify-center pt-36">
       {wishList &&

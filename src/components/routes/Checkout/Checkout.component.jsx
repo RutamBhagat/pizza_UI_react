@@ -2,21 +2,17 @@ import React, { useState } from "react";
 import CheckoutCard from "../../CheckoutCard/CheckoutCard.component";
 import { Fragment } from "react";
 import WishList from "../../WishList/WishList.component";
-import { useSelector } from "react-redux";
-import {
-  selectCartLength,
-  selectCartTotal,
-  selectCheckoutArr,
-} from "../../../store/cart/cart.selector";
-import { selectWishList } from "../../../store/wishlist/wishlist.selector";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import AlertComponent from "../../alertComponent/alert.component";
+import { useCartStore } from "../../../store/cart/cartstore";
+import { useWishListStore } from "../../../store/wishlist/wishliststore";
+import shallow from 'zustand/shallow';
 
 const Checkout = () => {
-  const checkoutArr = useSelector(selectCheckoutArr);
-  const cartLength = useSelector(selectCartLength);
-  const cartTotal = useSelector(selectCartTotal);
-  const wishList = useSelector(selectWishList);
+  const checkoutArr = useCartStore((state) => state.checkoutArr, shallow);
+  const cartLength = useCartStore((state) => state.cartLength, shallow);
+  const cartTotal = useCartStore((state) => state.cartTotal, shallow);
+  const wishList = useWishListStore((state) => state.wishList, shallow);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   const revealWishList = () => {
@@ -117,7 +113,9 @@ const Checkout = () => {
                 Test Card
               </button>
             </div>
-            <div className="rounded-lg p-5 bg-gray-300 my-auto"><CardElement /></div>
+            <div className="my-auto rounded-lg bg-gray-300 p-5">
+              <CardElement />
+            </div>
           </div>
         </div>
         <form className="body-font text-gray-600">

@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 import ItemsInCart from "../../ItemsInCart/ItemsInCart.component";
 import "./Navigation.css";
 import NavigationLinks from "./NavigationLinks.component";
-import { selectCheckoutArr } from '../../../store/cart/cart.selector';
+import { useCartStore } from "../../../store/cart/cartstore";
+import shallow from 'zustand/shallow';
 
 const Navigation = () => {
-  const checkoutArr = useSelector(selectCheckoutArr)
+  const checkoutArr = useCartStore((state) => state.checkoutArr, shallow);
   const openHamburger = () => {
     const btn = document.querySelector("#menu-btn");
     const nav = document.querySelector("#menu");

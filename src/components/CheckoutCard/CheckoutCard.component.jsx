@@ -1,17 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Category from "../Category/Category.component";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  handleRemovePizza,
-  handleUpdatePizza,
-} from "../../store/cart/cart.action";
-import { selectCheckoutArr } from "../../store/cart/cart.selector";
+import { useCartStore } from "../../store/cart/cartstore";
+import shallow from 'zustand/shallow';
 
 const CheckoutCard = ({ pizza }) => {
-  const dispatch = useDispatch();
-  const checkoutArr = useSelector(selectCheckoutArr);
   const { name, image, prices, category } = pizza;
+  const checkoutArr = useCartStore((state) => state.checkoutArr, shallow);
+  const handleUpdatePizza = useCartStore(
+    (state) => state.handleUpdatePizza,
+    shallow
+  );
+  const handleRemovePizza = useCartStore(
+    (state) => state.handleRemovePizza,
+    shallow
+  );
+
   const [quantity, setQuantity] = useState(pizza.quantity);
   const [size, setSize] = useState(pizza.size);
   const [subTotal, setSubTotal] = useState(pizza.quantity * prices[pizza.size]);
@@ -49,14 +53,11 @@ const CheckoutCard = ({ pizza }) => {
                     onChange={(event) => {
                       const tempQuantity = Number.parseInt(event.target.value);
                       setQuantity(tempQuantity);
-                      dispatch(
-                        handleUpdatePizza(
-                          checkoutArr,
-                          pizza,
-                          tempQuantity,
-                          size,
-                          tempQuantity * prices[size]
-                        )
+                      handleUpdatePizza(
+                        pizza,
+                        tempQuantity,
+                        size,
+                        tempQuantity * prices[size]
                       );
                     }}
                     value={quantity}
@@ -90,14 +91,11 @@ const CheckoutCard = ({ pizza }) => {
                     onChange={(event) => {
                       const tempSize = event.target.value;
                       setSize(tempSize);
-                      dispatch(
-                        handleUpdatePizza(
-                          checkoutArr,
-                          pizza,
-                          quantity,
-                          tempSize,
-                          quantity * prices[tempSize]
-                        )
+                      handleUpdatePizza(
+                        pizza,
+                        quantity,
+                        tempSize,
+                        quantity * prices[tempSize]
                       );
                     }}
                     value={size}
@@ -137,7 +135,7 @@ const CheckoutCard = ({ pizza }) => {
                 {`₹ ${subTotal}`}
               </span>
               <button
-                onClick={() => dispatch(handleRemovePizza(checkoutArr, pizza))}
+                onClick={() => handleRemovePizza(pizza)}
                 className="ml-auto flex rounded border-0 bg-gray-200 py-2 px-3 text-white hover:bg-brightRed focus:outline-none"
               >
                 <div className="h-4 w-4">

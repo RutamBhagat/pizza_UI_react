@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectCartLength } from "../../store/cart/cart.selector";
+import shallow from 'zustand/shallow';
+import { useCartStore } from "../../store/cart/cartstore";
 
 
 const ItemsInCart = () => {
-  const cartLength = useSelector(selectCartLength)
+  const cartLength = useCartStore((state) => state.cartLength, shallow);
   if (cartLength !== 0) {
     return (
       <span className="absolute inset-0 -mr-6 object-right-top">
